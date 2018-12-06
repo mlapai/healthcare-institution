@@ -8,7 +8,7 @@ export class CholesterolLevelExamFactory implements ExamFactory{
      *
      * @param dateTime
      */
-    public createExam(dateTime: Date): LaboratoryExamination {
+    public createExam(dateTime: Date): CholesterolLevelExam {
         return new CholesterolLevelExam(dateTime);
     }
 }
