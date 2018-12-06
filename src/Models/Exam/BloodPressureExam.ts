@@ -1,5 +1,4 @@
 import {LaboratoryExamination} from "./LaboratoryExamination";
-import {Doctor}                from "../Doctor";
 
 export class BloodPressureExam extends LaboratoryExamination {
     private upperBloodPressure: number;
