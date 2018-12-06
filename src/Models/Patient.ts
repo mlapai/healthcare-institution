@@ -1,6 +1,10 @@
-import {Person}                from "./Person";
-import {Doctor}                from "./Doctor";
+import {Person} from "./Person";
+import {Doctor} from "./Doctor";
 import {LaboratoryExamination} from "./Exam/LaboratoryExamination";
+import {BloodPressureExam} from "./Exam/BloodPressureExam";
+import {BloodPressureValue} from "../Values/BloodPressureValue";
+import {StandardExamination} from "./Exam/StandardExamination";
+import {StandardExamValue} from "../Values/StandardExamValue";
 
 export class Patient extends Person {
 
@@ -86,6 +90,67 @@ export class Patient extends Person {
             return false;
         }
         this.laboratoryExams.splice(key, 1);
+        return true;
+    }
+
+    public completeBloodPressureExam(
+        bloodPressureExam: BloodPressureExam,
+        bloodPressureValue: BloodPressureValue
+    ): boolean {
+        let exam = this.laboratoryExams.filter(function (exam) {
+            return exam.getId() === bloodPressureExam.getId()
+        });
+
+        // exit with false if exam is not found
+        if (exam.length === 0) {
+            return false;
+        }
+
+        let foundExam = exam[0];
+
+        // exit with false if exam is not an instance of BloodPressureExam
+        if (!(foundExam instanceof BloodPressureExam)) {
+            return false;
+        }
+
+        foundExam.setUpperBloodPressure(bloodPressureValue.getUpperPressure());
+        foundExam.setLowerBloodPressure(bloodPressureValue.getLowerPressure());
+        foundExam.setHeartPulse(bloodPressureValue.getLowerPressure());
+        foundExam.complete();
+
+        console.log('Patient "' + this.firstName + '" completed blood pressure exam with values ' + bloodPressureValue.upperPressure, bloodPressureValue.lowerPressure, bloodPressureValue.heartPulse + '');
+
+        return true;
+    }
+
+    /**
+     *
+     * @param standardExam
+     * @param standardExamValue
+     */
+    public completeStandardExam(standardExam: StandardExamination, standardExamValue: StandardExamValue): boolean {
+        let exam = this.laboratoryExams.filter(function (exam) {
+            return exam.getId() === standardExam.getId()
+        });
+
+        // exit with false if exam is not found
+        if (exam.length === 0) {
+            return false;
+        }
+
+        let foundExam = exam[0];
+
+        // exit with false if exam is not an instance of BloodPressureExam
+        if (!(foundExam instanceof StandardExamination)) {
+            return false;
+        }
+
+        foundExam.setValue(standardExamValue.getValue());
+        foundExam.setLastMealTime(standardExamValue.getLastMealTime());
+        foundExam.complete();
+
+        console.log('Patient "' + this.firstName + '" completed standard exam with values ' + standardExamValue.getValue(), standardExamValue.getLastMealTime() + '');
+
         return true;
     }
 }
