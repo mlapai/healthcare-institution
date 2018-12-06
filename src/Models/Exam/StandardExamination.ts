@@ -1,6 +1,4 @@
 import {LaboratoryExamination} from "./LaboratoryExamination";
-import {Doctor}                from "../Doctor";
-import {Patient}               from "../Patient";
 
 export abstract class StandardExamination extends LaboratoryExamination {
     protected value: number;
@@ -9,13 +7,11 @@ export abstract class StandardExamination extends LaboratoryExamination {
     /**
      *
      * @param dateTime
-     * @param doctor
-     * @param patient
      * @param value
      * @param lastMealTime
      */
-    protected constructor(dateTime: Date, doctor: Doctor, patient: Patient, value?: number, lastMealTime?: Date) {
-        super(dateTime, doctor, patient);
+    constructor(dateTime: Date, value?: number, lastMealTime?: Date) {
+        super(dateTime);
         this.value = value;
         this.lastMealTime = lastMealTime;
     }

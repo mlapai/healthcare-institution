@@ -1,6 +1,5 @@
 import {LaboratoryExamination} from "./LaboratoryExamination";
 import {Doctor}                from "../Doctor";
-import {Patient}               from "../Patient";
 
 export class BloodPressureExam extends LaboratoryExamination {
     private upperBloodPressure: number;
@@ -10,21 +9,17 @@ export class BloodPressureExam extends LaboratoryExamination {
     /**
      *
      * @param dateTime
-     * @param doctor
-     * @param patient
      * @param upperBloodPressure
      * @param lowerBloodPressure
      * @param heartPulse
      */
     constructor(
         dateTime: Date,
-        doctor: Doctor,
-        patient: Patient,
         upperBloodPressure?: number,
         lowerBloodPressure?: number,
         heartPulse?: number
     ) {
-        super(dateTime, doctor, patient);
+        super(dateTime);
         this.upperBloodPressure = upperBloodPressure;
         this.lowerBloodPressure = lowerBloodPressure;
         this.heartPulse = heartPulse;
