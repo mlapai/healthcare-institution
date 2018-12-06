@@ -31,6 +31,8 @@ export class Patient extends Person {
         this.medicalRecordNumber = medicalRecordNumber;
         this.doctor = doctor;
         this.laboratoryExams = laboratoryExams;
+
+        console.log(new Date(), 'Created patient "' + firstName + '"');
     }
 
     public getJmbg(): number {
@@ -46,8 +48,10 @@ export class Patient extends Person {
      *
      * @param doctor
      */
-    public changeDoctor(doctor: Doctor): Patient {
+    public setDoctor(doctor: Doctor): Patient {
         this.doctor = doctor;
+        console.log(new Date(), 'Patient "' + this.firstName + '" choosed doctor "' + doctor.getFirstName() + '"');
+
         return this;
     }
 
